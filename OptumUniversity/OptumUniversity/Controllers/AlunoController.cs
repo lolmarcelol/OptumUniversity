@@ -19,6 +19,8 @@ namespace OptumUniversity.Controllers
         public ActionResult Index()
         {
             return View(db.Alunos.ToList());
+
+            ///Oi Lindão
         }
 
         // GET: Aluno/Details/5
