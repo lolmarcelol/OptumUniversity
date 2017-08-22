@@ -9,9 +9,9 @@ namespace OptumUniversity.Models
     {
         public int AlunoID { get; set; }
         public string Nome { get; set; }
-        public int Cpf { get; set; }
+        public long Cpf { get; set; }
         public DateTime DataNascimento { get; set; }
 
-        public virtual ICollection<Nota> ADs { get; set; }
+        public virtual ICollection<AD> ADs { get; set; }
     }
 }

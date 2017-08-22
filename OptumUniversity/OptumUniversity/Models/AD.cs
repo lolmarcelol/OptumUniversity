@@ -6,13 +6,13 @@ using System.Web;
 namespace OptumUniversity.Models
 {
 
-    public class Nota
+    public class AD
     {
-        public int NotaID { get; set; }
+        public int ADID { get; set; }
         public int AlunoID { get; set; }
         public int DisciplinaID { get; set; }
 
         public virtual Disciplina Disciplina{ get; set; }
         public virtual Aluno Aluno { get; set; }
-    }//
+    }
 }

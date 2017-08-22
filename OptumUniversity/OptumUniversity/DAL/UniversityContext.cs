@@ -15,8 +15,9 @@ namespace OptumUniversity.DAL
         public DbSet<Aluno> Alunos { get; set; }
         public DbSet<Curso> Cursos{ get; set; }
         public DbSet<Disciplina> Disciplinas { get; set; }
-        public DbSet<Nota> AD { get; set; }
+        public DbSet<AD> AD { get; set; }
         public DbSet<DC> DC { get; set; }
+        public DbSet<Professor> Professores { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

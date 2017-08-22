@@ -141,6 +141,6 @@ C:\Users\Administrator\Documents\OptumUniversity\OptumUniversity\OptumUniversity
 C:\Users\Administrator\Documents\OptumUniversity\OptumUniversity\OptumUniversity\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Administrator\Documents\OptumUniversity\OptumUniversity\OptumUniversity\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Administrator\Documents\OptumUniversity\OptumUniversity\OptumUniversity\bin\Microsoft.AI.Web.xml
-C:\Users\Administrator\Documents\OptumUniversity\OptumUniversity\OptumUniversity\obj\Debug\OptumUniversity.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\OptumUniversity\OptumUniversity\OptumUniversity\obj\Debug\OptumUniversity.dll
 C:\Users\Administrator\Documents\OptumUniversity\OptumUniversity\OptumUniversity\obj\Debug\OptumUniversity.pdb
+C:\Users\Administrator\Documents\OptumUniversity\OptumUniversity\OptumUniversity\obj\Debug\OptumUniversity.csprojResolveAssemblyReference.cache
