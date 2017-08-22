@@ -13,5 +13,5 @@ namespace OptumUniversity.Models
 
         public virtual Disciplina Disciplina{ get; set; }
         public virtual Aluno Aluno { get; set; }
-    }
+    }//
 }
