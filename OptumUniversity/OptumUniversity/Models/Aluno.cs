@@ -12,6 +12,6 @@ namespace OptumUniversity.Models
         public int Cpf { get; set; }
         public DateTime DataNascimento { get; set; }
 
-        public virtual ICollection<AD> ADs { get; set; }
+        public virtual ICollection<Nota> ADs { get; set; }
     }
 }
