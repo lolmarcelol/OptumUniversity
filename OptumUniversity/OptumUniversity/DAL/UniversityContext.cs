@@ -9,6 +9,7 @@ namespace OptumUniversity.DAL
 
         public UniversityContext() : base("UniversityContext")
         {
+
         }
 
         public DbSet<Aluno> Alunos { get; set; }
