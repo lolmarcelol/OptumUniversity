@@ -45,14 +45,14 @@ namespace OptumUniversity.DAL
             disciplinas.ForEach(s => context.Disciplinas.Add(s));
             context.SaveChanges();
 
-            var ads = new List<AD>
+            var ads = new List<Nota>
             {
-                new AD {AlunoID=1,DisciplinaID=1},
-                new AD {AlunoID=1,DisciplinaID=2},
-                new AD {AlunoID=1,DisciplinaID=3},
-                new AD {AlunoID=2,DisciplinaID=1},
-                new AD {AlunoID=2,DisciplinaID=2},
-                new AD {AlunoID=2,DisciplinaID=3}
+                new Nota {AlunoID=1,DisciplinaID=1},
+                new Nota {AlunoID=1,DisciplinaID=2},
+                new Nota {AlunoID=1,DisciplinaID=3},
+                new Nota {AlunoID=2,DisciplinaID=1},
+                new Nota {AlunoID=2,DisciplinaID=2},
+                new Nota {AlunoID=2,DisciplinaID=3}
             };
 
             ads.ForEach(s => context.AD.Add(s));

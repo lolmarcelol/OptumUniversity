@@ -5,9 +5,10 @@ using System.Web;
 
 namespace OptumUniversity.Models
 {
-    public class AD
+
+    public class Nota
     {
-        public int ADID { get; set; }
+        public int NotaID { get; set; }
         public int AlunoID { get; set; }
         public int DisciplinaID { get; set; }
 
