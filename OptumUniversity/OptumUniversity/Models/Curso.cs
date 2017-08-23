@@ -10,6 +10,6 @@ namespace OptumUniversity.Models
         public string Nome { get; set; }
         public int CargaTotal { get; set; }
 
-        public virtual ICollection<DC> DCs { get; set; }
+        public virtual ICollection<Periodo> Periodos { get; set; }
     }
 }

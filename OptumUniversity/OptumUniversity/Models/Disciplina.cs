@@ -10,7 +10,7 @@ namespace OptumUniversity.Models
         public string Nome { get; set; }
         public int CargaHoraria { get; set; }
 
-        public virtual ICollection<DC> DCs { get; set; }
-        public virtual ICollection<AD> ADs { get; set; }
+        public virtual ICollection<Periodo> Periodos { get; set; }
+        public virtual ICollection<Nota> Notas { get; set; }
     }
 }

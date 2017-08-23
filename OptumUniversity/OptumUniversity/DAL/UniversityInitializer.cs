@@ -48,29 +48,29 @@ namespace OptumUniversity.DAL
             disciplinas.ForEach(s => context.Disciplinas.Add(s));
             context.SaveChanges();
 
-            var ads = new List<AD>
+            var notas = new List<Nota>
             {
-                new AD {AlunoID=1,DisciplinaID=1},
-                new AD {AlunoID=1,DisciplinaID=2},
-                new AD {AlunoID=1,DisciplinaID=3},
-                new AD {AlunoID=2,DisciplinaID=1},
-                new AD {AlunoID=2,DisciplinaID=2},
-                new AD {AlunoID=2,DisciplinaID=3}
+                new Nota {AlunoID=1,DisciplinaID=1, NotaAluno = Notas.B},
+                new Nota {AlunoID=2,DisciplinaID=2, NotaAluno = Notas.C},
+                new Nota {AlunoID=3,DisciplinaID=3, NotaAluno = Notas.A},
+                new Nota {AlunoID=4,DisciplinaID=1, NotaAluno = Notas.E},
+                new Nota {AlunoID=5,DisciplinaID=2, NotaAluno = Notas.D},
+                new Nota {AlunoID=6,DisciplinaID=3, NotaAluno = Notas.F}
             };
 
-            ads.ForEach(s => context.AD.Add(s));
+            notas.ForEach(s => context.Notas.Add(s));
             context.SaveChanges();
 
-            var dcs = new List<DC>
+            var periodos = new List<Periodo>
             {
-                new DC {CursoID=1,DisciplinaID=1},
-                new DC {CursoID=1,DisciplinaID=2},
-                new DC {CursoID=1,DisciplinaID=3},
-                new DC {CursoID=2,DisciplinaID=1},
-                new DC {CursoID=2,DisciplinaID=2},
-                new DC {CursoID=2,DisciplinaID=3}
+                new Periodo {CursoID=1,DisciplinaID=1, PeriodoCurso = Periodos.CincoAnos},
+                new Periodo {CursoID=1,DisciplinaID=2, PeriodoCurso = Periodos.CincoAnos},
+                new Periodo {CursoID=1,DisciplinaID=3, PeriodoCurso = Periodos.CincoAnos},
+                new Periodo {CursoID=2,DisciplinaID=1, PeriodoCurso = Periodos.QuatroAnos},
+                new Periodo {CursoID=2,DisciplinaID=2, PeriodoCurso = Periodos.QuatroAnos},
+                new Periodo {CursoID=2,DisciplinaID=3, PeriodoCurso = Periodos.QuatroAnos}
             };
-            dcs.ForEach(s => context.DC.Add(s));
+            periodos.ForEach(s => context.Periodos.Add(s));
             context.SaveChanges();
 
             var professores = new List<Professor>
