@@ -1,4 +1,5 @@
-﻿@model IEnumerable<OptumUniversity.Models.Professor>
+﻿
+@model IEnumerable<OptumUniversity.Models.Professor>
 
 @{
     ViewBag.Title = "Index";
@@ -6,16 +7,32 @@
 
 <h2>Index</h2>
 
+
+@using (Html.BeginForm("", "Professor", FormMethod.Get))
+{
+    <fieldset data-role="controlgroup">
+        <label>@Html.RadioButton("searchUser", "Manhã")Manhã</label>
+        <label>@Html.RadioButton("searchUser", "Noite")Noite</label>
+
+    </fieldset>
+    <input type="submit" value="Buscar" />
+
+}
+
+<font size="3" color="red">
+    @ViewBag.Alerta
+</font>
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Disciplina.Nome)
+            @Html.DisplayNameFor(model => model.Nome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nome)
+            @Html.DisplayName("Disciplina")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Turno)
@@ -27,11 +44,9 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Disciplina.Nome)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
+        
             <td>
                 @Html.DisplayFor(modelItem => item.Turno)
             </td>

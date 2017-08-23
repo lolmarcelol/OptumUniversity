@@ -15,11 +15,34 @@ namespace OptumUniversity.Controllers
     {
         private UniversityContext db = new UniversityContext();
 
-        // GET: Professor
-        public ActionResult Index()
+        public ActionResult Index(string searchUser = "")
         {
+
+            IEnumerable<Professor> result;
+
+            if (!String.IsNullOrEmpty(searchUser))
+            {
+                result = (from m in db.Professores
+                          where m.Turno.Contains(searchUser)
+                          select m);
+
+                if (result == null)
+                {
+                    ViewBag.Alerta = "Nenhum registro encontrado para " + searchUser;
+                    var professoress = db.Professores.Include(p => p.Disciplina);
+                    return View(professoress.ToList());
+                }
+
+            }
+            else
+            {
+                result = (from m in db.Professores
+                          select m).ToList();
+            }
+
+
             var professores = db.Professores.Include(p => p.Disciplina);
-            return View(professores.ToList());
+            return View(result);
         }
 
         // GET: Professor/Details/5

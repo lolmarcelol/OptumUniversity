@@ -34,6 +34,25 @@
             @Html.DisplayFor(model => model.DataNascimento)
         </dd>
 
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Disciplinas</th>
+                    <th>Notas</th>
+                </tr>
+                @foreach (var item in Model.Notas)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Disciplina.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NotaAluno)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
     </dl>
 </div>
 <p>

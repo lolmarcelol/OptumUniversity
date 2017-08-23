@@ -1,4 +1,5 @@
-﻿@model IEnumerable<OptumUniversity.Models.Aluno>
+﻿
+@model IEnumerable<OptumUniversity.Models.Aluno>
 
 @{
     ViewBag.Title = "Index";
@@ -9,6 +10,20 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm("", "Aluno", FormMethod.Get))
+{
+    <p>
+        Nome:
+        @Html.TextBox("searchUser")
+        <input type="submit" value="Buscar" />
+    </p>
+}
+
+<font size="3" color="red">
+    @ViewBag.Alerta
+</font>
+
 <table class="table">
     <tr>
         <th>
@@ -23,23 +38,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cpf)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataNascimento)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AlunoID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AlunoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AlunoID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimento)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AlunoID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AlunoID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AlunoID })
+            </td>
+        </tr>
+    }
 
 </table>

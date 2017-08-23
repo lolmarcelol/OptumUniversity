@@ -16,9 +16,30 @@ namespace OptumUniversity.Controllers
         private UniversityContext db = new UniversityContext();
 
         // GET: Aluno
-        public ActionResult Index()
+        public ActionResult Index(string searchUser = "")
         {
-            return View(db.Alunos.ToList());
+            IEnumerable<Aluno> result;
+
+            if (!String.IsNullOrEmpty(searchUser))
+            {
+                result = (from m in db.Alunos
+                          where m.Nome.Contains(searchUser)
+                          select m);
+
+                if (result == null)
+                {
+                    ViewBag.Alerta = "Nenhum registro encontrado para " + searchUser;
+                    return View(db.Alunos.ToList());
+                }
+
+            }
+            else
+            {
+                result = (from m in db.Alunos
+                          select m).ToList();
+            }
+
+            return View(result);
         }
 
         // GET: Aluno/Details/5
@@ -49,13 +70,19 @@ namespace OptumUniversity.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AlunoID,Nome,Cpf,DataNascimento")] Aluno aluno)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Alunos.Add(aluno);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Alunos.Add(aluno);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Não foi possível realizar as mudanças");
+            }
             return View(aluno);
         }
 
@@ -77,25 +104,43 @@ namespace OptumUniversity.Controllers
         // POST: Aluno/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AlunoID,Nome,Cpf,DataNascimento")] Aluno aluno)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(aluno).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(aluno);
-        }
-
-        // GET: Aluno/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult EditPost(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var alunoToUpdate = db.Alunos.Find(id);
+
+            if (TryUpdateModel(alunoToUpdate, "", new string[] { "Nome", "Cpf", "DataNascimento" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DataException)
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+
+            }
+            return View(alunoToUpdate);
+        }
+
+        // GET: Aluno/Delete/5
+        public ActionResult Delete(int? id, bool? saveChangesError = false)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
             Aluno aluno = db.Alunos.Find(id);
             if (aluno == null)
@@ -106,13 +151,20 @@ namespace OptumUniversity.Controllers
         }
 
         // POST: Aluno/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
-            Aluno aluno = db.Alunos.Find(id);
-            db.Alunos.Remove(aluno);
-            db.SaveChanges();
+            try
+            {
+                Aluno aluno = db.Alunos.Find(id);
+                db.Alunos.Remove(aluno);
+                db.SaveChanges();
+            }
+            catch (DataException)
+            {
+                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+            }
             return RedirectToAction("Index");
         }
 

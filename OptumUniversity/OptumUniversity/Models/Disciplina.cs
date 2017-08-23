@@ -9,8 +9,8 @@ namespace OptumUniversity.Models
         public int DisciplinaID { get; set; }
         public string Nome { get; set; }
         public int CargaHoraria { get; set; }
+        public int Periodo { get; set; }
 
-        public virtual ICollection<Periodo> Periodos { get; set; }
         public virtual ICollection<Nota> Notas { get; set; }
     }
 }
