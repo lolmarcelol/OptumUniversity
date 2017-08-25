@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<OptumUniversity.Models.Professor>
+﻿@model IEnumerable<OptumUniversity.Models.Professor>
 
 @{
     ViewBag.Title = "Index";
@@ -7,55 +6,40 @@
 
 <h2>Index</h2>
 
-
-@using (Html.BeginForm("", "Professor", FormMethod.Get))
-{
-    <fieldset data-role="controlgroup">
-        <label>@Html.RadioButton("searchUser", "Manhã")Manhã</label>
-        <label>@Html.RadioButton("searchUser", "Noite")Noite</label>
-
-    </fieldset>
-    <input type="submit" value="Buscar" />
-
-}
-
 <font size="3" color="red">
     @ViewBag.Alerta
 </font>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar Novo", "Create")
 </p>
-<table class="table">
+<table class="table" ng-controller="MyController">
     <tr>
-        <th>
+        <th ng-click="filtra('Nome')" style="cursor: pointer;">
             @Html.DisplayNameFor(model => model.Nome)
         </th>
-        <th>
-            @Html.DisplayName("Disciplina")
+        <th ng-click="filtra('Turno')" style="cursor: pointer;">
+            @Html.DisplayName("Turno")
         </th>
-        <th>
+        <th style="cursor: pointer;">
             @Html.DisplayNameFor(model => model.Turno)
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-        
-            <td>
-                @Html.DisplayFor(modelItem => item.Turno)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ProfessorID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ProfessorID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ProfessorID })
-            </td>
-        </tr>
-    }
+    <tr ng-repeat="professor in professores | orderBy:sortType">
+        <td>
+            {{professor.Nome}}
+        </td>
+        <td>
+            {{professor.Turno}}
+        </td>
+        <td>
+            <a data-ng-href="@Url.Action("Edit", "Professor")/{{professor.ProfessorID}}" target="_self">Editar  </a> |
+            <a data-ng-href="@Url.Action("Details", "Professor")/{{professor.ProfessorID}}" target="_self">Detalhes  </a> |
+            <a data-ng-href="@Url.Action("Delete", "Professor")/{{professor.ProfessorID}}" target="_self">Deletar  </a>
+        </td>
+    </tr>
+
 
 </table>

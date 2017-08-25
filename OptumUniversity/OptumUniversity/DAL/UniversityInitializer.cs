@@ -43,48 +43,50 @@ namespace OptumUniversity.DAL
             context.Alunos.Add(new Aluno { Nome = "Vini Cios", DataNascimento = DateTime.Parse("2000-02-02") });
             context.SaveChanges();
 
+            var cursos = new List<Curso> {
+                new Curso {Nome="Ciência da Computação", CargaTotal=123 },
+                new Curso {Nome="Sistemas de Informação", CargaTotal=123 },
+                new Curso {Nome="Análise e Desenvolvimento de Sistemas",CargaTotal=123 },
+                new Curso {Nome="Comércio Exterior", CargaTotal=321 },
+                new Curso {Nome="Engenharia Mecânica", CargaTotal=321 },
+                new Curso {Nome="Engenharia Civil", CargaTotal=123 },
+                new Curso {Nome="Nanotecnologia", CargaTotal=123 },
+                new Curso {Nome="Física", CargaTotal=321 },
+                new Curso {Nome="Ciências Contábeis", CargaTotal=321 },
+                new Curso {Nome="Engenharia Aeroespacial", CargaTotal=321 },
+                new Curso {Nome="Química", CargaTotal=123 },
+                new Curso {Nome="Matemática", CargaTotal=321 },
+                new Curso {Nome="Engenharia de Software", CargaTotal=321},
+                new Curso {Nome="Bioengenharia", CargaTotal=123}
 
-   
+            };
+            cursos.ForEach(s => context.Cursos.Add(s));
+            context.SaveChanges();
+
+
+
 
             var disciplinas = new List<Disciplina> {
-                new Disciplina {Nome="Arquitetura de Computadores", CargaHoraria=123,Periodo=1 },
-                new Disciplina {Nome="Lógica Matemática", CargaHoraria=123,Periodo=3 },
-                new Disciplina {Nome="Programação Orientada a Objetos", CargaHoraria=123,Periodo=3},
-                new Disciplina {Nome="Negócios Internacionais", CargaHoraria=321,Periodo=10 },
-                new Disciplina {Nome="Mecânica dos Fluídos", CargaHoraria=321,Periodo=5},
-                new Disciplina {Nome="Cálculo 10 ", CargaHoraria=123,Periodo=6},
-                new Disciplina {Nome="Mecânica da Partícula", CargaHoraria=123,Periodo=2},
-                new Disciplina {Nome="Física Quântica", CargaHoraria=321,Periodo=8},
-                new Disciplina {Nome="Organização Operacional", CargaHoraria=321,Periodo=1},
-                new Disciplina {Nome="Projetos de Máquinas", CargaHoraria=321,Periodo=2},
-                new Disciplina {Nome="Micro Gases", CargaHoraria=123,Periodo=3},
-                new Disciplina {Nome="Tópicos de Matemática", CargaHoraria=321,Periodo=3},
-                new Disciplina {Nome="Análise de Requisitos", CargaHoraria=321,Periodo=8},
-                new Disciplina {Nome="Transferência de Calor", CargaHoraria=123,Periodo=4}
+                new Disciplina {Nome="Arquitetura de Computadores", CargaHoraria=123,Periodo=1, CursoID = 1 },
+                new Disciplina {Nome="Lógica Matemática", CargaHoraria=123,Periodo=3, CursoID = 2 },
+                new Disciplina {Nome="Programação Orientada a Objetos", CargaHoraria=123,Periodo=3, CursoID = 3},
+                new Disciplina {Nome="Negócios Internacionais", CargaHoraria=321,Periodo=10, CursoID = 4 },
+                new Disciplina {Nome="Mecânica dos Fluídos", CargaHoraria=321,Periodo=5, CursoID = 5},
+                new Disciplina {Nome="Cálculo 10 ", CargaHoraria=123,Periodo=6, CursoID = 6},
+                new Disciplina {Nome="Mecânica da Partícula", CargaHoraria=123,Periodo=2, CursoID = 7},
+                new Disciplina {Nome="Física Quântica", CargaHoraria=321,Periodo=8, CursoID = 8},
+                new Disciplina {Nome="Organização Operacional", CargaHoraria=321,Periodo=1, CursoID = 9},
+                new Disciplina {Nome="Projetos de Máquinas", CargaHoraria=321,Periodo=2, CursoID = 10},
+                new Disciplina {Nome="Micro Gases", CargaHoraria=123,Periodo=3, CursoID = 11},
+                new Disciplina {Nome="Tópicos de Matemática", CargaHoraria=321,Periodo=3, CursoID = 12},
+                new Disciplina {Nome="Análise de Requisitos", CargaHoraria=321,Periodo=8, CursoID = 13},
+                new Disciplina {Nome="Transferência de Calor", CargaHoraria=123,Periodo=4, CursoID = 14}
 
             };
             disciplinas.ForEach(s => context.Disciplinas.Add(s));
             context.SaveChanges();
 
-            var cursos = new List<Curso> {
-                new Curso {Nome="Ciência da Computação", CargaTotal=123,Disciplinas=disciplinas[1] },
-                new Curso {Nome="Sistemas de Informação", CargaTotal=123,Disciplinas=disciplinas[2] },
-                new Curso {Nome="Análise e Desenvolvimento de Sistemas", CargaTotal=123,Disciplinas=disciplinas[3] },
-                new Curso {Nome="Comércio Exterior", CargaTotal=321,Disciplinas=disciplinas[4] },
-                new Curso {Nome="Engenharia Mecânica", CargaTotal=321,Disciplinas=disciplinas[5] },
-                new Curso {Nome="Engenharia Civil", CargaTotal=123,Disciplinas=disciplinas[6] },
-                new Curso {Nome="Nanotecnologia", CargaTotal=123,Disciplinas=disciplinas[7] },
-                new Curso {Nome="Física", CargaTotal=321,Disciplinas=disciplinas[8] },
-                new Curso {Nome="Ciências Contábeis", CargaTotal=321,Disciplinas=disciplinas[9] },
-                new Curso {Nome="Engenharia Aeroespacial", CargaTotal=321,Disciplinas=disciplinas[10] },
-                new Curso {Nome="Química", CargaTotal=123,Disciplinas=disciplinas[11] },
-                new Curso {Nome="Matemática", CargaTotal=321,Disciplinas=disciplinas[12] },
-                new Curso {Nome="Engenharia de Software", CargaTotal=321,Disciplinas=disciplinas[13] },
-                new Curso {Nome="Bioengenharia", CargaTotal=123,Disciplinas=disciplinas[0] }
 
-            };
-            cursos.ForEach(s => context.Cursos.Add(s));
-            context.SaveChanges();
 
 
 

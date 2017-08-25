@@ -18,7 +18,8 @@ namespace OptumUniversity.Controllers
         // GET: Disciplina
         public ActionResult Index()
         {
-            return View(db.Disciplinas.ToList());
+            var disciplinas = db.Disciplinas.Include(d => d.Curso);
+            return View(disciplinas.ToList());
         }
 
         // GET: Disciplina/Details/5
@@ -39,6 +40,7 @@ namespace OptumUniversity.Controllers
         // GET: Disciplina/Create
         public ActionResult Create()
         {
+            ViewBag.CursoID = new SelectList(db.Cursos, "CursoID", "Nome");
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace OptumUniversity.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DisciplinaID,Nome,CargaHoraria,Periodo")] Disciplina disciplina)
+        public ActionResult Create([Bind(Include = "DisciplinaID,Nome,CargaHoraria,Periodo,CursoID")] Disciplina disciplina)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +58,7 @@ namespace OptumUniversity.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CursoID = new SelectList(db.Cursos, "CursoID", "Nome", disciplina.CursoID);
             return View(disciplina);
         }
 
@@ -71,6 +74,7 @@ namespace OptumUniversity.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CursoID = new SelectList(db.Cursos, "CursoID", "Nome", disciplina.CursoID);
             return View(disciplina);
         }
 
@@ -79,7 +83,7 @@ namespace OptumUniversity.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DisciplinaID,Nome,CargaHoraria,Periodo")] Disciplina disciplina)
+        public ActionResult Edit([Bind(Include = "DisciplinaID,Nome,CargaHoraria,Periodo,CursoID")] Disciplina disciplina)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +91,7 @@ namespace OptumUniversity.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CursoID = new SelectList(db.Cursos, "CursoID", "Nome", disciplina.CursoID);
             return View(disciplina);
         }
 

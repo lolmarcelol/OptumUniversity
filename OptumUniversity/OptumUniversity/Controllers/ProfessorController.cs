@@ -15,6 +15,12 @@ namespace OptumUniversity.Controllers
     {
         private UniversityContext db = new UniversityContext();
 
+        public JsonResult IndexJson()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            return Json(db.Professores.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Index(string searchUser = "")
         {
 

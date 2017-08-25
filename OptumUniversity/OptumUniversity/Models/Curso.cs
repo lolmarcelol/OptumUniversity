@@ -9,7 +9,5 @@ namespace OptumUniversity.Models
         public int CursoID { get; set; }
         public string Nome { get; set; }
         public int CargaTotal { get; set; }
-
-        public virtual Disciplina Disciplinas { get; set; }
     }
 }
