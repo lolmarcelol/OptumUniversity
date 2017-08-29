@@ -44,11 +44,14 @@ textarea {
     color: #000000;
  }
 
-.mySlides{
-    width: 100%
+.mySlides {
+    width: 100%; 
 }
 
 .w3-content{
-    margin-bottom: 10px !important;
-    max-width: 1170px !important;
+    margin-bottom: 10px;
+    max-width: 1170px;
+    display:block;
+    margin:0 auto;
+    
 }
